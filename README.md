@@ -11,7 +11,7 @@ It should run on all devices with Android API version 23 or higher (Android 6.0 
 
 ## Download and Install
 
-The module can be downloaded in the [GitHub releases section for this repository](https://github.com/D4rCM4rC/MagiskSSH/releases). Further hints for installation, configuration and usage can be found [in the module's README.md](module_data/README.md).
+The module can be downloaded in the [Releases repository](https://gitlab.com/d4rcm4rc/MagiskSSH_releases). Once Gitlab raises their size limit on tag-attachments, the releases will migrate there. Further hints for installation, configuration and usage can be found [in the module's README.md](module_data/README.md).
 
 You don't trust me and don't want to use binaries I compiled? No problem at all! Just head to [How To Build](#how-to-build), grab the source code, check it and compile it yourself.
 
