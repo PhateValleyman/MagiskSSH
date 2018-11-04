@@ -45,6 +45,7 @@ Uninstalling the module via the Magisk Manager does not fully remove all data th
 ###### 2018-11-04
 
 - Version bumps (except rsync).
+- Set owner and permissions for shell directory
 - OpenSSL 1.0.2p
 - OpenSSH 7.9p1
 - Magisk Module Template v17000
