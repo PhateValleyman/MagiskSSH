@@ -12,7 +12,6 @@ $(ARCHIVE_DIR)/magisk_template-$(MAGISK_TEMPLATE_VERSION).tar.gz: $(ARCHIVE_DIR)
 $(BUILD_DIR)/module/stamp.module-extracted: $(ARCHIVE_DIR)/magisk_template-$(MAGISK_TEMPLATE_VERSION).tar.gz
 	mkdir -p $(BUILD_DIR)/module/magisk_ssh
 	tar -xvf "$(ARCHIVE_DIR)/magisk_template-$(MAGISK_TEMPLATE_VERSION).tar.gz" -C "$(BUILD_DIR)/module/magisk_ssh" --strip 1
-	rm $(BUILD_DIR)/module/magisk_ssh/system/placeholder
 	touch $(BUILD_DIR)/module/stamp.module-extracted
 
 $(BUILD_DIR)/module/stamp.module-prop: $(BUILD_DIR)/module/stamp.module-extracted

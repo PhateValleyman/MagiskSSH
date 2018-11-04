@@ -18,10 +18,10 @@ You don't trust me and don't want to use binaries I compiled? No problem at all!
 
 ## Used Packages and Included Resources
 
-* [OpenSSL 1.0.2m](https://www.openssl.org/) (only needed for its libcrypto)
-* [OpenSSH 7.6p1](https://www.openssh.com/)
-* [Rsync 3.1.2](https://rsync.samba.org/)
-* [Magisk Module Template v1400](https://github.com/topjohnwu/magisk-module-template)
+* [OpenSSL](https://www.openssl.org/) (only needed for its libcrypto)
+* [OpenSSH](https://www.openssh.com/)
+* [Rsync](https://rsync.samba.org/)
+* [Magisk Module Template](https://github.com/topjohnwu/magisk-module-template)
 
 Some changes to OpenSSH are used from [Arachnoid's SSHelper](https://arachnoid.com/android/SSHelper/). Also I have to partially ship a version of `resolv.h` from my system. It is, as far as I can tell, an 'internal-only' header and not included in the Android NDK. Still OpenSSH somehow needs it to compile.
 
