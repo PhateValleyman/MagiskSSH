@@ -1,5 +1,5 @@
 $(eval $(call start_package))
-OPENSSH?=openssh-7.7p1
+OPENSSH?=openssh-7.9p1
 
 PACKAGE=openssh
 
