@@ -48,6 +48,35 @@ The Android-NDK path is set to `/opt/android-ndk` per default. It can be changed
 
 Newer versions generally should work. Older versions may work or may not.
 
+## Version bumping OpenSSL and rsync
+
+A version bump for these two packages is pretty straightforward:
+
+- Enter the new version in openssl.mk or rsync.mk
+- Download the correct file and run sha512sum on it, place the result into the checksum directory as `<downloaded_file>.sha512`. The checksum entry shall not contain any path elements (ie. rsync-3.1.3.tar.gz instead of dl/rsync-3.1.3.tar.gz).
+- Update the module version and go through the checklist
+- Delete build and src directories and rebuild the whole module
+
+## Version bumping OpenSSH
+
+A version bump for OpenSSH is more difficult. Basically, the same steps as for OpenSSL and rsync are required.
+OpenSSH however also needs a patch which is different for every version.
+To generate one for a new version do this:
+
+- Unpack the new version's source to a directory twice (ie. `tar xzf openssh-version.tar.gz a; mv openssh-version a; cp -a a b`)
+- Try to apply the patch to b, it will not patch without issues (`cd b; patch -p1 < path/to/previous.patch`)
+- Fix all errors and warnings
+- Possibly add more changes
+- Generate a new patch (`diff -urN a b > path/to/new.patch`)
+- Try to build the module. If not possible, fix errors and generate a new patch
+
+## Checklist for a new version
+
+- All packages have the correct version
+- For all updated packages checksum files have been generated
+- A new version is entered in all_arches.mk and module_data/module.prop under both `version` and `versionCode`
+- The module_data/README.md is updated to include the new package versions
+- An entry in the changelog in module_data/README.md is added
 
 ## License
 
