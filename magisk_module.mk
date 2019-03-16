@@ -34,6 +34,10 @@ $(BUILD_DIR)/module/stamp.module-service: $(BUILD_DIR)/module/stamp.module-extra
 	cp -f $(ROOT_DIR)/module_data/service.sh $(BUILD_DIR)/module/magisk_ssh/common/
 	touch $(BUILD_DIR)/module/stamp.module-service
 
+$(BUILD_DIR)/module/stamp.module-library-wrapper: $(BUILD_DIR)/module/stamp.module-extracted
+	cp -f $(ROOT_DIR)/module_data/magisk_ssh_library_wrapper $(BUILD_DIR)/module/magisk_ssh/common/
+	touch $(BUILD_DIR)/module/stamp.module-library_wrapper
+
 $(BUILD_DIR)/module/stamp.module-binaries: $(BUILD_DIR)/module/stamp.module-extracted \
                                            $(INSTALLED_FILES_arm)                     \
                                            $(INSTALLED_FILES_arm64)                   \
@@ -55,7 +59,7 @@ $(BUILD_DIR)/module/stamp.module-initscript: $(BUILD_DIR)/arm/openssh/stamp.buil
 	    -e 's#=/bin#=/system/bin#'                 \
 	    -e 's#.*PidFile.*##'                       \
 	    -e 's#sbin#bin#'                           \
-	    -e 's#^prefix=.*#: $${MODDIR:="$$(realpath "$$(dirname "$$0")")"}\nexport LD_LIBRARY_PATH=\"$$MODDIR/usr/lib\"\nprefix=\"$$MODDIR/usr\"#' \
+	    -e 's#^prefix=.*#: $${MODDIR:="$$(realpath "$$(dirname "$$0")")"}\nprefix=\"$$MODDIR/usr\"#' \
 	    -e 's#@COMMENT_OUT_RSA1@.*##'              \
 	    $(BUILD_DIR)/arm/openssh/opensshd.init     \
 	    > $(BUILD_DIR)/module/magisk_ssh/common/opensshd.init
@@ -68,7 +72,8 @@ $(BUILD_DIR)/module/stamp.module: $(BUILD_DIR)/module/stamp.module-extracted  \
                                   $(BUILD_DIR)/module/stamp.module-binaries   \
                                   $(BUILD_DIR)/module/stamp.module-sshdconfig \
                                   $(BUILD_DIR)/module/stamp.module-service    \
-                                  $(BUILD_DIR)/module/stamp.module-initscript
+                                  $(BUILD_DIR)/module/stamp.module-initscript \
+                                  $(BUILD_DIR)/module/stamp.module-library-wrapper
 	touch $(BUILD_DIR)/module/stamp.module
 
 $(BUILD_DIR)/magisk_ssh_$(VERSION).zip: $(BUILD_DIR)/module/stamp.module

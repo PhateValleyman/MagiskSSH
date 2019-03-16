@@ -49,8 +49,9 @@ Feel free to create a Merge Request against the [source repository](https://gitl
 
 ###### 2019-03-16, v0.7
 
-- Bugfix.
+- Bugfixes.
 - Avoid hardcoding MODDIR in opensshd.init
+- Use wrapper script for setting LD_LIBRARY_PATH instead of setting it in init script
 
 ###### 2019-03-10, v0.6
 
