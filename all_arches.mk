@@ -3,7 +3,7 @@ include $(ROOT_DIR)/helpers.mk
 
 BUILD_DIR?=.
 BUILD_DIR_ROOT:=$(shell realpath $(BUILD_DIR))
-VERSION=0.7
+VERSION=0.8
 
 
 override NO_GLOBAL:=true
