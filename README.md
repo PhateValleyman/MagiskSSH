@@ -42,7 +42,7 @@ The Android-NDK path is set to `/opt/android-ndk` per default. It can be changed
 
 * Recent GNU/Linux system on amd64
 * Make. Only tested using GNU Make 4.2.1
-* Wget. Only tested using GNU Wget 1.19.5
+* Wget. Only tested using GNU Wget 1.20.1
 * Android NDK. Only tested using version 14.1.3816874
 * Python3. Only tested using Python 3.6.5
 
@@ -74,7 +74,7 @@ To generate one for a new version do this:
 
 - All packages have the correct version
 - For all updated packages checksum files have been generated
-- A new version is entered in all_arches.mk and module_data/module.prop under both `version` and `versionCode`
+- A new version is entered in module_data/module.prop under both `version` and `versionCode`
 - The module_data/README.md is updated to include the new package versions
 - An entry in the changelog in module_data/README.md is added
 

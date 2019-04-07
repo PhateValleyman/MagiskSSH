@@ -3,7 +3,7 @@ include $(ROOT_DIR)/helpers.mk
 
 BUILD_DIR?=.
 BUILD_DIR_ROOT:=$(shell realpath $(BUILD_DIR))
-VERSION=0.8
+VERSION:=$(shell grep '^version=' $(ROOT_DIR)/module_data/module.prop | sed 's/^version=//')
 
 
 override NO_GLOBAL:=true
