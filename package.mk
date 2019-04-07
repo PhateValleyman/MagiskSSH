@@ -25,7 +25,7 @@ $(eval $(pkg-targets))
 
 ifneq ($(IS_ARCHIVE_$(PACKAGE)_TARGET_CREATED),true)
 IS_ARCHIVE_$(PACKAGE)_TARGET_CREATED:=true
-$(ARCHIVE_DIR)/$(ARCHIVE_NAME): $(ARCHIVE_DIR)
+$(ARCHIVE_DIR)/$(ARCHIVE_NAME): $(ARCHIVE_DIR)/stamp.created
 	wget -O $(ARCHIVE_DIR)/$(ARCHIVE_NAME) --no-use-server-timestamps "$(DOWNLOAD_URL)"
 	cd "$(ARCHIVE_DIR)";                                                                    \
 	sha512sum -c $(ROOT_DIR)/checksums/$(ARCHIVE_NAME).sha512 ||                            \
