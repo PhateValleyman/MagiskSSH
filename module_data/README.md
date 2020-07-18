@@ -47,6 +47,14 @@ Feel free to create a Merge Request against the [source repository](https://gitl
 
 ## Changelog
 
+###### 2020-07-18, v0.11
+
+- Version bump.
+- OpenSSL 1.1.1g
+- OpenSSH 8.3p1
+- Rsync 3.2.2
+- Magisk installer v20.4
+
 ###### 2019-11-26, v0.10
 
 - Version bump.
