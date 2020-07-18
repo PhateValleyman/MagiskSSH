@@ -63,10 +63,13 @@ A version bump for OpenSSH is more difficult. Basically, the same steps as for O
 OpenSSH however also needs a patch which is different for every version.
 To generate one for a new version do this:
 
-- Unpack the new version's source to a directory twice (ie. `tar xzf openssh-version.tar.gz a; mv openssh-version a; cp -a a b`)
+- Unpack the new version's source to a directory twice (ie. `tar xzf openssh-version.tar.gz; mv openssh-version a; cp -a a b`)
 - Try to apply the patch to b, it will not patch without issues (`cd b; patch -p1 < path/to/previous.patch`)
 - Fix all errors and warnings
-- Possibly add more changes
+- Remove the pre-patch backups and reject files
+- Possibly add more changes. Candidates are:
+  - Calls to getpwnam
+  - Calls to getpwuid
 - Generate a new patch (`diff -urN a b > path/to/new.patch`)
 - Try to build the module. If not possible, fix errors and generate a new patch
 
