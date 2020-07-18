@@ -9,7 +9,7 @@ $(BUILD_DIR)/module/stamp.module-created:
 	mkdir -p $(BUILD_DIR)/module/magisk_ssh
 	mkdir -p $(BUILD_DIR)/module/magisk_ssh/arch
 	mkdir -p $(BUILD_DIR)/module/magisk_ssh/common
-	touch $(BUILD_DIR)/module/stamp.module-extracted
+	touch $(BUILD_DIR)/module/stamp.module-created
 
 $(BUILD_DIR)/module/stamp.module-staticdata: $(BUILD_DIR)/module/stamp.module-created
 	cp -R $(ROOT_DIR)/module_data/. $(BUILD_DIR)/module/magisk_ssh/
@@ -47,7 +47,7 @@ $(BUILD_DIR)/module/stamp.module: $(BUILD_DIR)/module/stamp.module-staticdata \
                                   $(BUILD_DIR)/module/stamp.module-initscript
 	touch $(BUILD_DIR)/module/stamp.module
 
-$(ARCHIVE_DIR)/magisk_template-$(MAGISK_INSTALLER_VERSION).sh: $(ARCHIVE_DIR)/stamp.created
+$(ARCHIVE_DIR)/magisk_installer-$(MAGISK_INSTALLER_VERSION).sh: $(ARCHIVE_DIR)/stamp.created
 	wget -O "$(ARCHIVE_DIR)/magisk_installer-$(MAGISK_INSTALLER_VERSION).sh" \
 	     --no-use-server-timestamps                                          \
 	     "https://raw.githubusercontent.com/topjohnwu/Magisk/$(MAGISK_INSTALLER_VERSION)/scripts/module_installer.sh"
@@ -58,7 +58,7 @@ $(ARCHIVE_DIR)/magisk_template-$(MAGISK_INSTALLER_VERSION).sh: $(ARCHIVE_DIR)/st
 	 false)
 
 $(BUILD_DIR)/module/stamp.module-standalone: $(BUILD_DIR)/module/stamp.module \
-                                             $(ARCHIVE_DIR)/magisk_template-$(MAGISK_INSTALLER_VERSION).sh
+                                             $(ARCHIVE_DIR)/magisk_installer-$(MAGISK_INSTALLER_VERSION).sh
 	cp -r $(BUILD_DIR)/module/magisk_ssh/. $(BUILD_DIR)/module/magisk_ssh_standalone
 	cp "$(ARCHIVE_DIR)/magisk_installer-$(MAGISK_INSTALLER_VERSION).sh" \
 	   "$(BUILD_DIR)/module/magisk_ssh_standalone/META-INF/com/google/android/update-binary"
