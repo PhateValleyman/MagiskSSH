@@ -5,7 +5,7 @@ This is an SSH server running as root using the great Magisk systemless root sui
 
 ## Included software
 
-* [OpenSSL 1.0.2t](https://www.openssl.org/) (only needed for its libcrypto)
+* [OpenSSL 1.1.1g](https://www.openssl.org/) (only needed for its libcrypto)
 * [OpenSSH 8.1p1](https://www.openssh.com/)
 * [Rsync 3.2.2](https://rsync.samba.org/)
 * [Magisk Module Installer](https://github.com/topjohnwu/magisk-module-installer)
