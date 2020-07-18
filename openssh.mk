@@ -5,7 +5,7 @@ PACKAGE=openssh
 
 ARCHIVE_NAME:=$(OPENSSH).tar.gz
 #TODO: randomly select mirror?
-DOWNLOAD_URL:=ftp://ftp.bytemine.net/pub/OpenBSD/OpenSSH/portable/$(ARCHIVE_NAME)
+DOWNLOAD_URL:=ftp://mirror.hs-esslingen.de/pub/OpenBSD/OpenSSH/portable/$(ARCHIVE_NAME)
 
 CFLAGS+=-I$(BUILD_DIR)/openssl/include
 LDFLAGS+=-L$(BUILD_DIR)/openssl/
