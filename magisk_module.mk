@@ -1,6 +1,6 @@
 $(eval $(call start_package)) # not really a package, but we may reset stuff just in case
 
-MAGISK_INSTALLER_VERSION?=v20.4
+MAGISK_INSTALLER_VERSION?=v22.1
 
 .PHONY: module
 module: $(BUILD_DIR)/magisk_ssh-$(VERSION).zip
