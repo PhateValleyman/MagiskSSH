@@ -35,16 +35,16 @@ Some changes to OpenSSH are used from [Arachnoid's SSHelper](https://arachnoid.c
 
 A zip file will be created in the build-directory. It can be copied to the Android device and installed via the Magisk Manager app.
 
-On my i7-6700k a full build takes about 150s.
+On my i7-6700k a full build takes about 4 minutes.
 The Android-NDK path is set to `/opt/android-ndk` per default. It can be changed by passing `ANDROID_ROOT=/path/to/ndk` to make.
 
 ## Build Dependencies
 
 * Recent GNU/Linux system on amd64
-* Make. Only tested using GNU Make 4.2.1
-* Wget. Only tested using GNU Wget 1.20.1
+* Make. Only tested using GNU Make 4.3
+* Wget. Only tested using GNU Wget 1.20.3
 * Android NDK. Only tested using version 14.1.3816874
-* Python3. Only tested using Python 3.6.5
+* Python3. Only tested using Python 3.8.8
 
 Newer versions generally should work. Older versions may work or may not.
 
