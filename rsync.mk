@@ -10,6 +10,8 @@ PACKAGE_INSTALLED_FILES:=$(BUILD_DIR)/usr/bin/rsync
 CFLAGS+=-I$(BUILD_DIR)/openssl/include
 LDFLAGS+=-L$(BUILD_DIR)/openssl/
 
+PACKAGE_WANT_PREPARE=true
+
 define pkg-targets
 $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared $(call depend-built,openssl)
 	mkdir -p $(BUILD_DIR)/$(PACKAGE)
@@ -19,6 +21,14 @@ $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared $
 	  --disable-simd --disable-xxhash --disable-zstd --disable-lz4 \
 	  CFLAGS="$(CFLAGS)" CPPFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
 	$(make-configured-stamp)
+
+ifneq ($(IS_SRC_$(PACKAGE)_TARGET_PREPARED),true)
+IS_SRC_$(PACKAGE)_TARGET_PREPARED:=true
+$(SRC_DIR)/$(PACKAGE)/stamp.prepared: $(SRC_DIR)/$(PACKAGE)/stamp.unpacked
+	cd "$(SRC_DIR)/$(PACKAGE)/$(RSYNC)"; \
+		sed -i -e 's/^if.*;/if false;/' mkgitver
+	$(make-prepared-stamp)
+endif
 
 $(BUILD_DIR)/usr/bin/rsync: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
