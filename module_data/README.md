@@ -53,6 +53,13 @@ Feel free to create a Merge Request against the [source repository](https://gitl
 
 ## Changelog
 
+###### 2022-02-19, v0.14
+
+- Add uninstaller script (see section 'Uninstallation') (thanks cl-ement05 and osm0sis)
+- Use user handles instead of names for credits (thanks osm0sis)
+- Ensure correct home directory permissions on install (thanks nazar-pc)
+- Put temp files into /data/local/tmp instead of /tmp (thanks F-i-f)
+
 ###### 2022-02-19, v0.13
 
 - Version bump.
