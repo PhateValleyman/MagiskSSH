@@ -68,7 +68,7 @@ Feel free to create a Merge Request against the [source repository](https://gitl
 - Rsync 3.2.3
 - Magisk installer v22.1
 - Fix build repository's commit hash bleeding into rsync --version
-- Properly set library path for rsync (thanks Adorka Blue)
+- Properly set library path for rsync (thanks adorkablue)
 
 ###### 2020-07-18, v0.11
 
