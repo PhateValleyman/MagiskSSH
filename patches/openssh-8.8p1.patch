@@ -291,7 +291,7 @@ diff -urN a/Makefile.in b/Makefile.in
  
 diff -urN a/misc.c b/misc.c
 --- a/misc.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/misc.c	2022-02-19 11:42:23.330910657 +0100
++++ b/misc.c	2022-02-19 19:50:45.072884484 +0100
 @@ -1139,11 +1139,11 @@
  		}
  		memcpy(user, filename, slash);
@@ -306,6 +306,15 @@ diff -urN a/misc.c b/misc.c
  		error_f("No such uid %ld", (long)uid);
  		return -1;
  	}
+@@ -1758,7 +1758,7 @@
+ 		if (r > 0 && (size_t)r < len)
+ 			return;
+ 	}
+-	r = snprintf(s, len, "/tmp/ssh-XXXXXXXXXXXX");
++	r = snprintf(s, len, "/data/local/tmp/ssh-XXXXXXXXXXXX");
+ 	if (r < 0 || (size_t)r >= len)
+ 		fatal_f("template string too short");
+ }
 @@ -2600,7 +2600,7 @@
  		error("%s: inconsistent arguments", tag); /* XXX fatal? */
  		return 0;
@@ -656,7 +665,25 @@ diff -urN a/servconf.c b/servconf.c
  
 diff -urN a/session.c b/session.c
 --- a/session.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/session.c	2022-02-19 11:38:04.456989576 +0100
++++ b/session.c	2022-02-19 19:51:21.383452734 +0100
+@@ -197,7 +197,7 @@
+ 	temporarily_use_uid(pw);
+ 
+ 	/* Allocate a buffer for the socket name, and format the name. */
+-	auth_sock_dir = xstrdup("/tmp/ssh-XXXXXXXXXX");
++	auth_sock_dir = xstrdup("/data/local/tmp/ssh-XXXXXXXXXX");
+ 
+ 	/* Create private directory for socket */
+ 	if (mkdtemp(auth_sock_dir) == NULL) {
+@@ -267,7 +267,7 @@
+ 		return;
+ 
+ 	temporarily_use_uid(pw);
+-	auth_info_file = xstrdup("/tmp/sshauth.XXXXXXXXXXXXXXX");
++	auth_info_file = xstrdup("/data/local/tmp/sshauth.XXXXXXXXXXXXXXX");
+ 	if ((fd = mkstemp(auth_info_file)) == -1) {
+ 		error_f("mkstemp: %s", strerror(errno));
+ 		goto out;
 @@ -1047,7 +1047,7 @@
  #  endif /* HAVE_ETC_DEFAULT_LOGIN */
  	if (path == NULL || *path == '\0') {

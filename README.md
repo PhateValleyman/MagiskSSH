@@ -70,6 +70,7 @@ To generate one for a new version do this:
 - Possibly add more changes. Candidates are:
   - Calls to getpwnam
   - Calls to getpwuid
+  - Direct uses of /tmp as path for temporary files
 - Generate a new patch (`diff -urN a b > path/to/new.patch`)
 - Try to build the module. If not possible, fix errors and generate a new patch
 
