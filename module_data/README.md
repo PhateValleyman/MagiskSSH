@@ -17,6 +17,7 @@ Download the zip file and install it via the Magisk Manager app. Once this modul
 ## Configuration
 
 SSH keys can be put into `/data/ssh/root/.ssh/authorized_keys` and `/data/ssh/shell/.ssh/authorized_keys` using your favorite method of editing files.
+Note that this file must be owned by the respective user and should have `600` permissions (owner: rw, everyone else: nothing).
 
 The sshd configuration file in `/data/ssh/sshd_config` can be edited as well, but please be aware that some features usually present in an OpenSSH installation may be missing. Most importantly, password login is not possible using this package.
 
@@ -27,6 +28,7 @@ The ssh daemon automatically starts on device boot. If this is undesired, you ca
 Once you have written a valid SSH public key into an `authorized_keys` file (see section 'Configuration' above), you can connect to the device using `ssh shell@<device_ip>` (unprivileged access) or `ssh root@<device_ip>` (privileged access), while supplying the correct private key. You will drop into a shell on the device. sftp and rsync should work as usual.
 
 If you want to manually start/stop the sshd-service, you may do so using `/data/adb/modules/ssh/opensshd.init start` and `/data/adb/modules/ssh/opensshd.init stop`. This is usually not necessary but may be useful if you use the `no-autostart` file described earlier.
+Note that the `opensshd.init` script may be in a different place on your device. Magisk explicitly does not give any guarantees about the install location and is free to change it.
 
 ## Uninstallation
 
