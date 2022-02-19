@@ -30,7 +30,11 @@ If you want to manually start/stop the sshd-service, you may do so using `/data/
 
 ## Uninstallation
 
-Uninstalling the module via the Magisk Manager does not fully remove all data that has been installed or created during execution. You may want to delete the `/data/ssh` folder from your device to remove all traces of this module.
+Uninstalling the module via the Magisk Manager should also delete the `/data/ssh` directory.
+This contains the host keys for the SSH server and the home directories for the SSH users.
+Thus, uninstalling via the Manager should get rid of all traces of this module.
+
+If you wish to keep the runtime data for a later reinstallation of the module, create a file `/data/ssh/KEEP_ON_UNINSTALL` and the uninstaller will skip this step.
 
 ## Contributing
 
