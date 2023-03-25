@@ -18,6 +18,8 @@ LD=ld
 AS=llvm-as
 AR=llvm-ar
 OPENSSL_ARCH=android-$(ANDROID_ARCH)
+EXTRA_PATH := $(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/
+STRIP=$(EXTRA_PATH)/llvm-strip
 
 BUILD_DIR:=$(shell realpath $(BUILD_DIR))
 ARCHIVE_DIR:=$(shell realpath $(ARCHIVE_DIR))
