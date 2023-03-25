@@ -13,10 +13,10 @@ ANDROID_MARCH?=armv8-a
 CFLAGS=-O3 -pipe -fomit-frame-pointer -fPIE
 LDFLAGS=-pie
 CROSS?=$(ANDROID_MARCH)-linux-android
-CC=$(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/$(CROSS)$(ANDROID_PLATFORM)-clang
-LD=$(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/ld
-AS=$(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-as
-AR=$(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+CC=$(CROSS)$(ANDROID_PLATFORM)-clang
+LD=ld
+AS=llvm-as
+AR=llvm-ar
 OPENSSL_ARCH?=$(TRIPLET_ARCH)
 
 BUILD_DIR:=$(shell realpath $(BUILD_DIR))

@@ -51,7 +51,7 @@ endif
 endif
 
 $(BUILD_DIR)/$(PACKAGE)/stamp.built: $(BUILD_DIR)/$(PACKAGE)/stamp.configured
-	$(MAKE) -C "$(BUILD_DIR)/$(PACKAGE)"
+	+PATH=$(EXTRA_PATH):$(PATH) $(MAKE) -C "$(BUILD_DIR)/$(PACKAGE)"
 	touch $(BUILD_DIR)/$(PACKAGE)/stamp.built
 endef
 

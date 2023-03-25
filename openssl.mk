@@ -13,7 +13,10 @@ define pkg-targets
 $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared
 	mkdir -p $(BUILD_DIR)/$(PACKAGE)
 	cp -R "$(SRC_DIR)/$(PACKAGE)/$(OPENSSL)/." "$(BUILD_DIR)/$(PACKAGE)"
-	cd "$(BUILD_DIR)/$(PACKAGE)"; CC=$(CC) LD=$(LD) AS=$(AS) AR=$(AR) ./Configure -DOPENSSL_NO_HEARTBEATS shared "linux-$(OPENSSL_ARCH)" $(CFLAGS) $(LDFLAGS)
+	cd "$(BUILD_DIR)/$(PACKAGE)";               \
+		PATH=$(EXTRA_PATH):$(PATH)           \
+		CC=$(CC) LD=$(LD) AS=$(AS) AR=$(AR) \
+		./Configure -DOPENSSL_NO_HEARTBEATS shared "linux-$(OPENSSL_ARCH)"
 	$(make-configured-stamp)
 
 $(BUILD_DIR)/usr/lib/libcrypto.so.$(LIBCRYPTO_VERSION): $(BUILD_DIR)/$(PACKAGE)/stamp.built

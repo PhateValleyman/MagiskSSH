@@ -23,13 +23,14 @@ define pkg-targets
 $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared $(call depend-built,openssl)
 	mkdir -p $(BUILD_DIR)/$(PACKAGE)
 	cd "$(BUILD_DIR)/$(PACKAGE)";                                                          \
-	$(SRC_DIR)/$(PACKAGE)/$(OPENSSH)/configure --build x86_64-pc-linux-gnu --host $(CROSS) \
+	PATH=$(EXTRA_PATH):$(PATH) $(SRC_DIR)/$(PACKAGE)/$(OPENSSH)/configure \
+	  --build x86_64-pc-linux-gnu --host $(CROSS)                                          \
 	  LD="$(LD)" CC="$(CC)"                                                                \
 	  CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"                                              \
 	  CPPFLAGS="$(CFLAGS) -DHAVE_ATTRIBUTE__SENTINEL__=1 -DHAVE__RES_EXTERN=1"             \
 	  --disable-utmpx --disable-utmp --disable-wtmp --disable-wtmpx                        \
 	  --sysconfdir=/data/ssh --with-pid-dir=/data/ssh                                      \
-	  --with-maildir=/tmp                                                                  \
+	  --with-maildir=/var/mail                                                             \
 	  --with-default-path="/system/bin:/system/xbin:/system/sbin:/magisk/ssh/usr/bin"      \
 	  --with-superuser-path="/system/bin:/system/xbin:/system/sbin:/magisk/ssh/usr/bin"
 	sed -i -e 's:/\* #undef HAVE_MBLEN \*/:#define HAVE_MBLEN 1:'                          \
