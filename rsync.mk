@@ -15,10 +15,11 @@ PACKAGE_WANT_PREPARE=true
 define pkg-targets
 $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared $(call depend-built,openssl)
 	mkdir -p $(BUILD_DIR)/$(PACKAGE)
-	cd "$(BUILD_DIR)/$(PACKAGE)";                                  \
-	$(SRC_DIR)/$(PACKAGE)/$(RSYNC)/configure                       \
-	  --build x86_64-pc-linux-gnu --host $(CROSS)                  \
-	  --disable-simd --disable-xxhash --disable-zstd --disable-lz4 \
+	cd "$(BUILD_DIR)/$(PACKAGE)";                                   \
+	$(SRC_DIR)/$(PACKAGE)/$(RSYNC)/configure                        \
+	  LD="$(LD)" CC="$(CC)" CFLAGS="$(CFLAGS)" CPPFLAGS="$(CFLAGS)" \
+	  --build x86_64-pc-linux-gnu --host $(CROSS)                   \
+	  --disable-simd --disable-xxhash --disable-zstd --disable-lz4  \
 	  CFLAGS="$(CFLAGS)" CPPFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
 	$(make-configured-stamp)
 

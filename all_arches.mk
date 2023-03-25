@@ -37,7 +37,7 @@ copy: copy_arm copy_arm64 copy_x86 copy_x86_64 copy_mips copy_mips64
 .PHONY: all
 all: all_arm all_arm64 all_x86 all_x86_64 all_mips all_mips64
 
-$(eval $(call single-arch,arm,arm,armv7-a,arm-linux-androideabi,armv4))
+$(eval $(call single-arch,arm,arm,armv7-a,armv7a-linux-androideabi,armv4))
 $(eval $(call single-arch,arm64,aarch64,armv8-a,aarch64-linux-android,aarch64))
 $(eval $(call single-arch,x86,i686,i686,i686-linux-android,elf))
 $(eval $(call single-arch,x86_64,x86_64,x86-64,x86_64-linux-android,x86_64))
