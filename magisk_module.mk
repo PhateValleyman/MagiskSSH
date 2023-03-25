@@ -19,15 +19,11 @@ $(BUILD_DIR)/module/stamp.module-binaries: $(BUILD_DIR)/module/stamp.module-crea
                                            $(INSTALLED_FILES_arm)                   \
                                            $(INSTALLED_FILES_arm64)                 \
                                            $(INSTALLED_FILES_x86)                   \
-                                           $(INSTALLED_FILES_x86_64)                \
-                                           $(INSTALLED_FILES_mips)                  \
-                                           $(INSTALLED_FILES_mips64)
+                                           $(INSTALLED_FILES_x86_64)
 	cp -r $(BUILD_DIR)/arm/usr    $(BUILD_DIR)/module/magisk_ssh/arch/arm
 	cp -r $(BUILD_DIR)/arm64/usr  $(BUILD_DIR)/module/magisk_ssh/arch/arm64
 	cp -r $(BUILD_DIR)/x86/usr    $(BUILD_DIR)/module/magisk_ssh/arch/x86
 	cp -r $(BUILD_DIR)/x86_64/usr $(BUILD_DIR)/module/magisk_ssh/arch/x86_64
-	cp -r $(BUILD_DIR)/mips/usr   $(BUILD_DIR)/module/magisk_ssh/arch/mips
-	cp -r $(BUILD_DIR)/mips64/usr $(BUILD_DIR)/module/magisk_ssh/arch/mips64
 	touch $(BUILD_DIR)/module/stamp.module-binaries
 
 $(BUILD_DIR)/module/stamp.module-initscript: $(BUILD_DIR)/arm/openssh/stamp.built     \
