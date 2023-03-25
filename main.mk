@@ -17,7 +17,7 @@ CC=$(CROSS)$(ANDROID_PLATFORM)-clang
 LD=ld
 AS=llvm-as
 AR=llvm-ar
-OPENSSL_ARCH?=$(TRIPLET_ARCH)
+OPENSSL_ARCH=android-$(ANDROID_ARCH)
 
 BUILD_DIR:=$(shell realpath $(BUILD_DIR))
 ARCHIVE_DIR:=$(shell realpath $(ARCHIVE_DIR))

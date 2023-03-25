@@ -13,7 +13,6 @@ override NO_GLOBAL:=true
 # $(2): TRIPLET_ARCH (ie. aarch64)        -- the architecture as used in the architecture triplet
 # $(3): ANDROID_MARCH (ie. armv8-a)       -- an actual 'version' of an arch. Passed to -march
 # $(4): CROSS (ie. aarch64-linux-android) -- the full architecture triplet
-# $(5): OPENSSL_ARCH (ie. aarch64)        -- this is passed as linux-$(OPENSSL_ARCH) to the openssl configure script
 define single-arch
 
 BUILD_DIR=$(BUILD_DIR_ROOT)/$(1)
@@ -21,7 +20,6 @@ ANDROID_ARCH:=$(1)
 TRIPLET_ARCH:=$(2)
 ANDROID_MARCH:=$(3)
 CROSS:=$(4)
-OPENSSL_ARCH:=$(5)
 PHONY_TARGET_PREFIX:=_$(1)
 CFLAGS:=
 LDFLAGS:=
