@@ -1,7 +1,7 @@
 diff -urN a/android-tweaks.c b/android-tweaks.c
 --- a/android-tweaks.c	1970-01-01 01:00:00.000000000 +0100
-+++ b/android-tweaks.c	2023-03-25 17:02:50.832974875 +0100
-@@ -0,0 +1,159 @@
++++ b/android-tweaks.c	2022-02-19 11:38:04.443656041 +0100
+@@ -0,0 +1,160 @@
 +#include "android-tweaks.h"
 +#include <stdlib.h>
 +#include <limits.h>
@@ -105,7 +105,8 @@ diff -urN a/android-tweaks.c b/android-tweaks.c
 +void endpwent(void) {
 +}
 +
-+void setpwent(void) {
++int setpwent(void) {
++	return 0;
 +}
 +
 +struct passwd *getpwent(void) {
@@ -161,9 +162,10 @@ diff -urN a/android-tweaks.c b/android-tweaks.c
 +	}
 +	return storage;
 +}
+\ Kein Zeilenumbruch am Dateiende.
 diff -urN a/android-tweaks.h b/android-tweaks.h
 --- a/android-tweaks.h	1970-01-01 01:00:00.000000000 +0100
-+++ b/android-tweaks.h	2023-03-25 17:01:45.505247262 +0100
++++ b/android-tweaks.h	2022-02-19 11:38:04.443656041 +0100
 @@ -0,0 +1,16 @@
 +#include <sys/types.h>
 +#include <pwd.h>
@@ -183,7 +185,7 @@ diff -urN a/android-tweaks.h b/android-tweaks.h
 +#endif
 diff -urN a/auth2-pubkey.c b/auth2-pubkey.c
 --- a/auth2-pubkey.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/auth2-pubkey.c	2023-03-25 17:01:45.505247262 +0100
++++ b/auth2-pubkey.c	2022-02-19 11:38:04.443656041 +0100
 @@ -467,7 +467,7 @@
  	/* Prepare and verify the user for the command */
  	username = percent_expand(options.authorized_principals_command_user,
@@ -204,7 +206,7 @@ diff -urN a/auth2-pubkey.c b/auth2-pubkey.c
  		    username, strerror(errno));
 diff -urN a/auth.c b/auth.c
 --- a/auth.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/auth.c	2023-03-25 17:01:45.505247262 +0100
++++ b/auth.c	2022-02-19 11:38:04.443656041 +0100
 @@ -586,7 +586,7 @@
  	aix_setauthdb(user);
  #endif
@@ -216,7 +218,7 @@ diff -urN a/auth.c b/auth.c
  	aix_restoreauthdb();
 diff -urN a/includes.h b/includes.h
 --- a/includes.h	2021-09-26 16:03:19.000000000 +0200
-+++ b/includes.h	2023-03-25 17:01:45.505247262 +0100
++++ b/includes.h	2022-02-19 11:38:04.443656041 +0100
 @@ -176,4 +176,6 @@
  
  #include "entropy.h"
@@ -226,7 +228,7 @@ diff -urN a/includes.h b/includes.h
  #endif /* INCLUDES_H */
 diff -urN a/loginrec.c b/loginrec.c
 --- a/loginrec.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/loginrec.c	2023-03-25 17:01:45.508580649 +0100
++++ b/loginrec.c	2022-02-19 11:38:04.446989426 +0100
 @@ -311,7 +311,7 @@
  	 * reliably search wtmp(x) for the last login (see
  	 * wtmp_get_entry().)
@@ -247,7 +249,7 @@ diff -urN a/loginrec.c b/loginrec.c
  			    li->username);
 diff -urN a/logintest.c b/logintest.c
 --- a/logintest.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/logintest.c	2023-03-25 17:01:45.508580649 +0100
++++ b/logintest.c	2022-02-19 11:38:04.446989426 +0100
 @@ -97,7 +97,7 @@
  
  	printf("**\n** Testing the API...\n**\n");
@@ -259,7 +261,7 @@ diff -urN a/logintest.c b/logintest.c
  	/* gethostname(hostname, sizeof(hostname)); */
 diff -urN a/Makefile.in b/Makefile.in
 --- a/Makefile.in	2021-09-26 16:03:19.000000000 +0200
-+++ b/Makefile.in	2023-03-25 17:01:45.508580649 +0100
++++ b/Makefile.in	2022-02-19 11:38:04.446989426 +0100
 @@ -109,12 +109,14 @@
  	kexgexc.o kexgexs.o \
  	kexsntrup761x25519.o sntrup761.o kexgen.o \
@@ -289,7 +291,7 @@ diff -urN a/Makefile.in b/Makefile.in
  
 diff -urN a/misc.c b/misc.c
 --- a/misc.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/misc.c	2023-03-25 17:01:45.508580649 +0100
++++ b/misc.c	2022-02-19 19:50:45.072884484 +0100
 @@ -1139,11 +1139,11 @@
  		}
  		memcpy(user, filename, slash);
@@ -324,7 +326,7 @@ diff -urN a/misc.c b/misc.c
  	}
 diff -urN a/openbsd-compat/explicit_bzero.c b/openbsd-compat/explicit_bzero.c
 --- a/openbsd-compat/explicit_bzero.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/openbsd-compat/explicit_bzero.c	2023-03-25 17:01:45.511914038 +0100
++++ b/openbsd-compat/explicit_bzero.c	2022-02-19 11:38:04.450322809 +0100
 @@ -39,7 +39,8 @@
   * Indirect bzero through a volatile pointer to hopefully avoid
   * dead-store optimisation eliminating the call.
@@ -347,8 +349,17 @@ diff -urN a/openbsd-compat/explicit_bzero.c b/openbsd-compat/explicit_bzero.c
  #endif /* HAVE_MEMSET_S */
 diff -urN a/openbsd-compat/getrrsetbyname.c b/openbsd-compat/getrrsetbyname.c
 --- a/openbsd-compat/getrrsetbyname.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/openbsd-compat/getrrsetbyname.c	2023-03-25 17:02:17.349097774 +0100
-@@ -187,6 +187,7 @@
++++ b/openbsd-compat/getrrsetbyname.c	2022-02-19 11:38:04.450322809 +0100
+@@ -57,6 +57,8 @@
+ 
+ #include "getrrsetbyname.h"
+ 
++#include "resolv-android-compat.h"
++
+ #if defined(HAVE_DECL_H_ERRNO) && !HAVE_DECL_H_ERRNO
+ extern int h_errno;
+ #endif
+@@ -187,6 +189,7 @@
      unsigned int rdtype, unsigned int flags,
      struct rrsetinfo **res)
  {
@@ -356,7 +367,7 @@ diff -urN a/openbsd-compat/getrrsetbyname.c b/openbsd-compat/getrrsetbyname.c
  	struct __res_state *_resp = _THREAD_PRIVATE(_res, _res, &_res);
  	int result;
  	struct rrsetinfo *rrset = NULL;
-@@ -197,6 +198,7 @@
+@@ -197,6 +200,7 @@
  	unsigned int index_ans, index_sig;
  	u_char answer[ANSWER_BUFFER_SIZE];
  
@@ -364,7 +375,7 @@ diff -urN a/openbsd-compat/getrrsetbyname.c b/openbsd-compat/getrrsetbyname.c
  	/* check for invalid class and type */
  	if (rdclass > 0xffff || rdtype > 0xffff) {
  		result = ERRSET_INVAL;
-@@ -343,6 +345,8 @@
+@@ -343,6 +347,8 @@
  	if (response != NULL)
  		free_dns_response(response);
  	return (result);
@@ -375,7 +386,7 @@ diff -urN a/openbsd-compat/getrrsetbyname.c b/openbsd-compat/getrrsetbyname.c
  void
 diff -urN a/openbsd-compat/glob.c b/openbsd-compat/glob.c
 --- a/openbsd-compat/glob.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/openbsd-compat/glob.c	2023-03-25 17:01:45.511914038 +0100
++++ b/openbsd-compat/glob.c	2022-02-19 11:38:04.450322809 +0100
 @@ -395,7 +395,7 @@
  		if (issetugid() != 0 || (h = getenv("HOME")) == NULL) {
  #endif
@@ -396,7 +407,7 @@ diff -urN a/openbsd-compat/glob.c b/openbsd-compat/glob.c
  			h = pwd->pw_dir;
 diff -urN a/openbsd-compat/pwcache.c b/openbsd-compat/pwcache.c
 --- a/openbsd-compat/pwcache.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/openbsd-compat/pwcache.c	2023-03-25 17:01:45.511914038 +0100
++++ b/openbsd-compat/pwcache.c	2022-02-19 11:38:04.453656193 +0100
 @@ -64,7 +64,7 @@
  #endif
  			pwopen = 1;
@@ -406,9 +417,179 @@ diff -urN a/openbsd-compat/pwcache.c b/openbsd-compat/pwcache.c
  			if (nouser)
  				return (NULL);
  			(void)snprintf(nbuf, sizeof(nbuf), "%lu", (u_long)uid);
+diff -urN a/openbsd-compat/resolv-android-compat.h b/openbsd-compat/resolv-android-compat.h
+--- a/openbsd-compat/resolv-android-compat.h	1970-01-01 01:00:00.000000000 +0100
++++ b/openbsd-compat/resolv-android-compat.h	2022-02-19 11:38:04.453656193 +0100
+@@ -0,0 +1,165 @@
++/*
++ * Copyright (c) 1983, 1987, 1989
++ *    The Regents of the University of California.  All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 4. Neither the name of the University nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ */
++
++/*
++ * Portions Copyright (c) 1996-1999 by Internet Software Consortium.
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
++ * ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
++ * OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
++ * CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
++ * DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
++ * PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
++ * ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
++ * SOFTWARE.
++ */
++
++/*
++ *	@(#)resolv.h	8.1 (Berkeley) 6/2/93
++ *	$BINDId: resolv.h,v 8.31 2000/03/30 20:16:50 vixie Exp $
++ */
++
++typedef enum { res_goahead, res_nextns, res_modified, res_done, res_error }
++	res_sendhookact;
++
++typedef res_sendhookact (*res_send_qhook) (struct sockaddr_in * const *__ns,
++					   const u_char **__query,
++					   int *__querylen,
++					   u_char *__ans,
++					   int __anssiz,
++					   int *__resplen);
++
++typedef res_sendhookact (*res_send_rhook) (const struct sockaddr_in *__ns,
++					   const u_char *__query,
++					   int __querylen,
++					   u_char *__ans,
++					   int __anssiz,
++					   int *__resplen);
++
++/*
++ * Global defines and variables for resolver stub.
++ */
++# define MAXNS			3	/* max # name servers we'll track */
++# define MAXDFLSRCH		3	/* # default domain levels to try */
++# define MAXDNSRCH		6	/* max # domains in search path */
++# define LOCALDOMAINPARTS	2	/* min levels in name that is "local" */
++
++# define RES_TIMEOUT		5	/* min. seconds between retries */
++# define MAXRESOLVSORT		10	/* number of net to sort on */
++# define RES_MAXNDOTS		15	/* should reflect bit field size */
++# define RES_MAXRETRANS		30	/* only for resolv.conf/RES_OPTIONS */
++# define RES_MAXRETRY		5	/* only for resolv.conf/RES_OPTIONS */
++# define RES_DFLRETRY		2	/* Default #/tries. */
++# define RES_MAXTIME		65535	/* Infinity, in milliseconds. */
++
++/*
++ * Resolver options (keep these in synch with res_debug.c, please)
++ */
++#define RES_INIT	0x00000001	/* address initialized */
++#define RES_DEBUG	0x00000002	/* print debug messages */
++#define RES_AAONLY	0x00000004	/* authoritative answers only (!IMPL)*/
++#define RES_USEVC	0x00000008	/* use virtual circuit */
++#define RES_PRIMARY	0x00000010	/* query primary server only (!IMPL) */
++#define RES_IGNTC	0x00000020	/* ignore trucation errors */
++#define RES_RECURSE	0x00000040	/* recursion desired */
++#define RES_DEFNAMES	0x00000080	/* use default domain name */
++#define RES_STAYOPEN	0x00000100	/* Keep TCP socket open */
++#define RES_DNSRCH	0x00000200	/* search up local domain tree */
++#define	RES_INSECURE1	0x00000400	/* type 1 security disabled */
++#define	RES_INSECURE2	0x00000800	/* type 2 security disabled */
++#define	RES_NOALIASES	0x00001000	/* shuts off HOSTALIASES feature */
++#define	RES_USE_INET6	0x00002000	/* use/map IPv6 in gethostbyname() */
++#define RES_ROTATE	0x00004000	/* rotate ns list after each query */
++#define	RES_NOCHECKNAME	0x00008000	/* do not check names for sanity (!IMPL) */
++#define	RES_KEEPTSIG	0x00010000	/* do not strip TSIG records */
++#define	RES_BLAST	0x00020000	/* blast all recursive servers */
++#define RES_USEBSTRING	0x00040000	/* IPv6 reverse lookup with byte
++					   strings */
++#define RES_NOIP6DOTINT	0x00080000	/* Do not use .ip6.int in IPv6
++					   reverse lookup */
++#define RES_USE_EDNS0	0x00100000	/* Use EDNS0.  */
++#define RES_SNGLKUP	0x00200000	/* one outstanding request at a time */
++#define RES_SNGLKUPREOP	0x00400000	/* -"-, but open new socket for each
++					   request */
++#define RES_USE_DNSSEC	0x00800000	/* use DNSSEC using OK bit in OPT */
++#define RES_NOTLDQUERY	0x01000000	/* Do not look up unqualified name
++					   as a TLD.  */
++
++#define RES_DEFAULT	(RES_RECURSE|RES_DEFNAMES|RES_DNSRCH|RES_NOIP6DOTINT)
++
++struct __res_state {
++	int	retrans;		/* retransmition time interval */
++	int	retry;			/* number of times to retransmit */
++	u_long	options;		/* option flags - see below. */
++	int	nscount;		/* number of name servers */
++	struct sockaddr_in
++		nsaddr_list[MAXNS];	/* address of name server */
++# define nsaddr	nsaddr_list[0]		/* for backward compatibility */
++	u_short	id;			/* current message id */
++	/* 2 byte hole here.  */
++	char	*dnsrch[MAXDNSRCH+1];	/* components of domain to search */
++	char	defdname[256];		/* default domain (deprecated) */
++	u_long	pfcode;			/* RES_PRF_ flags - see below. */
++	unsigned ndots:4;		/* threshold for initial abs. query */
++	unsigned nsort:4;		/* number of elements in sort_list[] */
++	unsigned ipv6_unavail:1;	/* connecting to IPv6 server failed */
++	unsigned unused:23;
++	struct {
++		struct in_addr	addr;
++		u_int32_t	mask;
++	} sort_list[MAXRESOLVSORT];
++	/* 4 byte hole here on 64-bit architectures.  */
++	res_send_qhook qhook;		/* query hook */
++	res_send_rhook rhook;		/* response hook */
++	int	res_h_errno;		/* last one set for this context */
++	int	_vcsock;		/* PRIVATE: for res_send VC i/o */
++	u_int	_flags;			/* PRIVATE: see below */
++	/* 4 byte hole here on 64-bit architectures.  */
++	union {
++		char	pad[52];	/* On an i386 this means 512b total. */
++		struct {
++			u_int16_t		nscount;
++			u_int16_t		nsmap[MAXNS];
++			int			nssocks[MAXNS];
++			u_int16_t		nscount6;
++			u_int16_t		nsinit;
++			struct sockaddr_in6	*nsaddrs[MAXNS];
++#ifdef _LIBC
++			unsigned long long int	initstamp
++			  __attribute__((packed));
++#else
++			unsigned int		_initstamp[2];
++#endif
++		} _ext;
++	} _u;
++};
+\ Kein Zeilenumbruch am Dateiende.
 diff -urN a/scp.c b/scp.c
 --- a/scp.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/scp.c	2023-03-25 17:01:45.511914038 +0100
++++ b/scp.c	2022-02-19 11:38:04.453656193 +0100
 @@ -596,7 +596,7 @@
  	if (iamremote)
  		mode = MODE_SCP;
@@ -420,7 +601,7 @@ diff -urN a/scp.c b/scp.c
  	if (!isatty(STDOUT_FILENO))
 diff -urN a/servconf.c b/servconf.c
 --- a/servconf.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/servconf.c	2023-03-25 17:01:45.515247425 +0100
++++ b/servconf.c	2022-02-19 11:38:04.456989576 +0100
 @@ -643,7 +643,7 @@
  	{ "clientalivecountmax", sClientAliveCountMax, SSHCFG_ALL },
  	{ "authorizedkeysfile", sAuthorizedKeysFile, SSHCFG_ALL },
@@ -484,7 +665,7 @@ diff -urN a/servconf.c b/servconf.c
  
 diff -urN a/session.c b/session.c
 --- a/session.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/session.c	2023-03-25 17:01:45.515247425 +0100
++++ b/session.c	2022-02-19 19:51:21.383452734 +0100
 @@ -197,7 +197,7 @@
  	temporarily_use_uid(pw);
  
@@ -514,7 +695,7 @@ diff -urN a/session.c b/session.c
  #endif /* HAVE_LOGIN_CAP */
 diff -urN a/sftp-server.c b/sftp-server.c
 --- a/sftp-server.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/sftp-server.c	2023-03-25 17:01:45.515247425 +0100
++++ b/sftp-server.c	2022-02-19 11:38:04.456989576 +0100
 @@ -1259,7 +1259,7 @@
  	else if (S_ISREG(sb.st_mode)) {
  		/* Race-free rename of regular files */
@@ -526,7 +707,7 @@ diff -urN a/sftp-server.c b/sftp-server.c
  #endif
 diff -urN a/sftp-server-main.c b/sftp-server-main.c
 --- a/sftp-server-main.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/sftp-server-main.c	2023-03-25 17:01:45.518580811 +0100
++++ b/sftp-server-main.c	2022-02-19 11:38:04.456989576 +0100
 @@ -44,7 +44,7 @@
  
  	seed_rng();
@@ -538,7 +719,7 @@ diff -urN a/sftp-server-main.c b/sftp-server-main.c
  		return 1;
 diff -urN a/ssh-add.c b/ssh-add.c
 --- a/ssh-add.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/ssh-add.c	2023-03-25 17:01:45.518580811 +0100
++++ b/ssh-add.c	2022-02-19 11:38:04.456989576 +0100
 @@ -830,7 +830,7 @@
  		struct stat st;
  		int count = 0;
@@ -550,7 +731,7 @@ diff -urN a/ssh-add.c b/ssh-add.c
  			ret = 1;
 diff -urN a/ssh.c b/ssh.c
 --- a/ssh.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/ssh.c	2023-03-25 17:01:45.518580811 +0100
++++ b/ssh.c	2022-02-19 11:38:04.460322961 +0100
 @@ -657,7 +657,7 @@
  	seed_rng();
  
@@ -562,7 +743,7 @@ diff -urN a/ssh.c b/ssh.c
  		exit(255);
 diff -urN a/sshd.c b/sshd.c
 --- a/sshd.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/sshd.c	2023-03-25 17:01:45.518580811 +0100
++++ b/sshd.c	2022-02-19 11:38:04.460322961 +0100
 @@ -1792,7 +1792,7 @@
  
  	/* Store privilege separation user for later use if required. */
@@ -574,7 +755,7 @@ diff -urN a/sshd.c b/sshd.c
  			    SSH_PRIVSEP_USER);
 diff -urN a/ssh-keygen.c b/ssh-keygen.c
 --- a/ssh-keygen.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/ssh-keygen.c	2023-03-25 17:01:45.521914200 +0100
++++ b/ssh-keygen.c	2022-02-19 11:38:04.460322961 +0100
 @@ -3210,7 +3210,7 @@
  	msetlocale();
  
@@ -586,7 +767,7 @@ diff -urN a/ssh-keygen.c b/ssh-keygen.c
  	pw = pwcopy(pw);
 diff -urN a/ssh-keysign.c b/ssh-keysign.c
 --- a/ssh-keysign.c	2021-09-26 16:03:19.000000000 +0200
-+++ b/ssh-keysign.c	2023-03-25 17:01:45.521914200 +0100
++++ b/ssh-keysign.c	2022-02-19 11:38:04.460322961 +0100
 @@ -191,7 +191,7 @@
  	key_fd[i++] = open(_PATH_HOST_XMSS_KEY_FILE, O_RDONLY);
  	key_fd[i++] = open(_PATH_HOST_RSA_KEY_FILE, O_RDONLY);
