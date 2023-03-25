@@ -25,6 +25,7 @@ $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared
 $(BUILD_DIR)/usr/lib/libcrypto.so: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/lib/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/libcrypto.so" "$(BUILD_DIR)/usr/lib/"
+	$(STRIP) "$(BUILD_DIR)/usr/lib/libcrypto.so"
 endef
 
 $(eval $(package))

@@ -50,26 +50,32 @@ endif
 $(BUILD_DIR)/usr/bin/ssh: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/ssh" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/ssh"
 
 $(BUILD_DIR)/usr/bin/sshd: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/sshd" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/sshd"
 
 $(BUILD_DIR)/usr/bin/sftp: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/sftp" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/sftp"
 
 $(BUILD_DIR)/usr/bin/scp: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/scp" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/scp"
 
 $(BUILD_DIR)/usr/bin/sftp-server: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/sftp-server" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/sftp-server"
 
 $(BUILD_DIR)/usr/bin/ssh-keygen: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/ssh-keygen" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/ssh-keygen"
 
 endef
 

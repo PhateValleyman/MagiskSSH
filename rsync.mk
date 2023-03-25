@@ -34,6 +34,7 @@ endif
 $(BUILD_DIR)/usr/bin/rsync: $(BUILD_DIR)/$(PACKAGE)/stamp.built
 	mkdir -p $(BUILD_DIR)/usr/bin/
 	cp -u "$(BUILD_DIR)/$(PACKAGE)/rsync" "$(BUILD_DIR)/usr/bin/"
+	$(STRIP) "$(BUILD_DIR)/usr/bin/rsync"
 endef
 
 $(eval $(package))
