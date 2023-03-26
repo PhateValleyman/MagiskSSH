@@ -57,7 +57,7 @@ Newer versions generally should work. Older versions may work or may not.
 A version bump for these two packages is pretty straightforward:
 
 - Enter the new version in openssl.mk or rsync.mk
-- Download the correct file and run sha512sum on it, place the result into the checksum directory as `<downloaded_file>.sha512`. The checksum entry shall not contain any path elements (ie. rsync-3.1.3.tar.gz instead of dl/rsync-3.1.3.tar.gz).
+- run `make update_openssl_with_tofu` or `make update_rsync_with_tofu` to generate checksums
 - Update the module version and go through the checklist
 - Delete build and src directories and rebuild the whole module
 

@@ -33,6 +33,24 @@ $(ARCHIVE_DIR)/$(ARCHIVE_NAME): $(ARCHIVE_DIR)/stamp.created
 	 false)
 endif
 
+ifneq ($(IS_UPDATE_$(PACKAGE)_WITH_TOFU_TARGET_CREATED),true)
+IS_UPDATE_$(PACKAGE)_WITH_TOFU_TARGET_CREATED:=true
+.PHONY: update_$(PACKAGE)_with_tofu
+update_$(PACKAGE)_with_tofu:
+	if [ -f $(ROOT_DIR)/checksums/$(ARCHIVE_NAME).sha512 ]; then \
+		echo "Checksum for $(ARCHIVE_NAME) already exists."; \
+		echo "You don't need the update step.";              \
+		echo "Bailing.";                                     \
+	else                                                         \
+		wget --continue -O $(ARCHIVE_DIR)/$(ARCHIVE_NAME)    \
+		     --no-use-server-timestamps "$(DOWNLOAD_URL)";   \
+		cd "$(ARCHIVE_DIR)";                                 \
+		sha512sum "$(ARCHIVE_NAME)"                          \
+		   > "$(ROOT_DIR)/checksums/$(ARCHIVE_NAME).sha512"; \
+	fi
+
+endif
+
 ifneq ($(IS_SRC_$(PACKAGE)_TARGET_CREATED),true)
 IS_SRC_$(PACKAGE)_TARGET_CREATED:=true
 $(SRC_DIR)/$(PACKAGE)/stamp.unpacked: $(ARCHIVE_DIR)/$(ARCHIVE_NAME)
