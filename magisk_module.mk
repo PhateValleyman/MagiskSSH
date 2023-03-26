@@ -62,8 +62,13 @@ $(BUILD_DIR)/module/stamp.module-standalone: $(BUILD_DIR)/module/stamp.module \
 
 $(BUILD_DIR)/magisk_ssh_$(VERSION).zip: $(BUILD_DIR)/module/stamp.module-standalone
 	rm -f $(BUILD_DIR)/magisk_ssh_$(VERSION).zip
-	cd $(BUILD_DIR)/module/magisk_ssh_standalone; \
-	zip -9 -r $(shell realpath $(BUILD_DIR)/magisk_ssh_$(VERSION).zip) *
+	if which 7z > /dev/null; then                                                    \
+		cd $(BUILD_DIR)/module/magisk_ssh_standalone;                            \
+		7z a -mx9 $(shell realpath $(BUILD_DIR)/magisk_ssh_$(VERSION).zip) -- *; \
+	else                                                                             \
+		cd $(BUILD_DIR)/module/magisk_ssh_standalone;                            \
+		zip -9 -r $(shell realpath $(BUILD_DIR)/magisk_ssh_$(VERSION).zip) *;    \
+	fi
 
 .PHONY: zip
 zip: $(BUILD_DIR)/magisk_ssh_$(VERSION).zip
