@@ -1,5 +1,5 @@
 $(eval $(call start_package))
-RSYNC?=rsync-3.2.3
+RSYNC?=rsync-3.2.7
 
 PACKAGE:=rsync
 
@@ -27,7 +27,7 @@ ifneq ($(IS_SRC_$(PACKAGE)_TARGET_PREPARED),true)
 IS_SRC_$(PACKAGE)_TARGET_PREPARED:=true
 $(SRC_DIR)/$(PACKAGE)/stamp.prepared: $(SRC_DIR)/$(PACKAGE)/stamp.unpacked
 	cd "$(SRC_DIR)/$(PACKAGE)/$(RSYNC)"; \
-		sed -i -e 's/^if.*;/if false;/' mkgitver
+		sed -i -e 's/^if.*\.git.*;/if false;/' mkgitver
 	$(make-prepared-stamp)
 endif
 
