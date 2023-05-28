@@ -5,8 +5,8 @@ include $(ROOT_DIR)/helpers.mk
 BUILD_DIR?=.
 ARCHIVE_DIR?=$(ROOT_DIR)/dl/
 SRC_DIR?=$(ROOT_DIR)/src/
-ANDROID_ROOT?=/opt/android-ndk
-ANDROID_PLATFORM?=24
+ANDROID_ROOT?=/data/data/com.termux/files/home/lib/android-ndk
+ANDROID_PLATFORM?=29
 ANDROID_ARCH?=arm64
 TRIPLET_ARCH?=aarch64
 ANDROID_MARCH?=armv8-a

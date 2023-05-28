@@ -43,7 +43,7 @@ $(BUILD_DIR)/$(PACKAGE)/stamp.configured: $(SRC_DIR)/$(PACKAGE)/stamp.prepared $
 ifneq ($(IS_SRC_$(PACKAGE)_TARGET_PREPARED),true)
 IS_SRC_$(PACKAGE)_TARGET_PREPARED:=true
 $(SRC_DIR)/$(PACKAGE)/stamp.prepared: $(SRC_DIR)/$(PACKAGE)/stamp.unpacked
-	cd "$(SRC_DIR)/$(PACKAGE)/$(OPENSSH)"; patch -p1 < "$(ROOT_DIR)/patches/$(OPENSSH).patch"
+	cd "$(SRC_DIR)/$(PACKAGE)/$(OPENSSH)"; patch -p1 < "$(ROOT_DIR)/patches/$(OPENSSH).patch"; patch -p1 < "$(ROOT_DIR)/openssh-9.3p1+x509-14.1.1.diff"
 	$(make-prepared-stamp)
 endif
 
