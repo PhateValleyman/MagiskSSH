@@ -15,9 +15,9 @@ override NO_GLOBAL:=true
 define single-arch
 
 BUILD_DIR=$(BUILD_DIR_ROOT)/$(1)
-ANDROID_ARCH:=$(1)
-TRIPLET_ARCH:=$(2)
-ANDROID_MARCH:=$(3)
+ANDROID_ARCH:=arm
+TRIPLET_ARCH:=armv4
+ANDROID_MARCH:=armv7-a
 CROSS:=$(4)
 PHONY_TARGET_PREFIX:=_$(1)
 CFLAGS:=
@@ -30,15 +30,12 @@ endef
 
 
 .PHONY: copy
-copy: copy_arm copy_arm64 copy_x86 copy_x86_64 copy_mips copy_mips64
+copy: copy_arm
 
 .PHONY: all
-all: all_arm all_arm64 all_x86 all_x86_64
+all: all_arm
 
 $(eval $(call single-arch,arm,arm,armv7-a,armv7a-linux-androideabi,armv4))
-$(eval $(call single-arch,arm64,aarch64,armv8-a,aarch64-linux-android,aarch64))
-$(eval $(call single-arch,x86,i686,i686,i686-linux-android,elf))
-$(eval $(call single-arch,x86_64,x86_64,x86-64,x86_64-linux-android,x86_64))
 
 #reset paths
 BUILD_DIR:=$(BUILD_DIR_ROOT)
