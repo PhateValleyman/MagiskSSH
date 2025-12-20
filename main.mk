@@ -5,11 +5,11 @@ include $(ROOT_DIR)/helpers.mk
 BUILD_DIR?=.
 ARCHIVE_DIR?=$(ROOT_DIR)/dl/
 SRC_DIR?=$(ROOT_DIR)/src/
-ANDROID_ROOT?=/data/data/com.termux/files/home/lib/android-ndk
-ANDROID_PLATFORM?=29
-ANDROID_ARCH?=arm64
-TRIPLET_ARCH?=aarch64
-ANDROID_MARCH?=armv8-a
+ANDROID_ROOT := /data/data/com.termux/files/home/lib/android-ndk-r27b
+ANDROID_PLATFORM?=21
+ANDROID_ARCH?=arm
+TRIPLET_ARCH?=armv4
+ANDROID_MARCH?=armv7-a
 CFLAGS=-O3 -pipe -fomit-frame-pointer -fPIE
 LDFLAGS=-pie
 CROSS?=$(ANDROID_MARCH)-linux-android
@@ -18,7 +18,7 @@ LD=ld
 AS=llvm-as
 AR=llvm-ar
 OPENSSL_ARCH=android-$(ANDROID_ARCH)
-EXTRA_PATH := $(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/
+EXTRA_PATH := $(ANDROID_ROOT)/toolchains/llvm/prebuilt/linux-aarch64/bin/
 STRIP=$(EXTRA_PATH)/llvm-strip
 
 BUILD_DIR:=$(shell realpath $(BUILD_DIR))
